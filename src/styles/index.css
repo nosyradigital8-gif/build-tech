@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --charcoal: #161c20;
+  --brand: #1a8f3c;
+  --brand-deep: #0e6b2a;
+  --white: #ffffff;
+  --surface: #f3f5f4;
+  --muted: #6b7378;
+  --line: #dce2df;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-charcoal font-body antialiased;
+  }
+  ::selection {
+    background: rgba(26, 143, 60, 0.18);
+  }
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2;
+  }
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto w-[min(1180px,calc(100%-2rem))] md:w-[min(1180px,calc(100%-4rem))];
+  }
+  .eyebrow {
+    @apply font-display text-[10px] font-bold uppercase tracking-[0.3em] text-brand;
+  }
+  .section-title {
+    @apply font-display text-3xl font-extrabold uppercase leading-[0.98] tracking-[-0.04em] text-charcoal md:text-5xl;
+  }
+  .section-title-light {
+    @apply font-display text-3xl font-extrabold uppercase leading-[0.98] tracking-[-0.04em] text-white md:text-5xl;
+  }
+  .body-copy {
+    @apply text-base leading-7 text-muted;
+  }
+  .surface-grid {
+    background-image:
+      linear-gradient(rgba(22, 28, 32, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(22, 28, 32, 0.035) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+  .green-rule {
+    @apply h-px w-14 bg-brand;
+  }
+}
+
+.skyline-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 90px;
+}
+.skyline-bars span {
+  display: block;
+  width: 9px;
+  background: var(--brand);
+  animation: skyline-rise 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.skyline-bars span:nth-child(1) {
+  height: 28%;
+  animation-delay: 0.05s;
+  background: var(--charcoal);
+}
+.skyline-bars span:nth-child(2) {
+  height: 52%;
+  animation-delay: 0.1s;
+  background: var(--charcoal);
+}
+.skyline-bars span:nth-child(3) {
+  height: 78%;
+  animation-delay: 0.15s;
+}
+.skyline-bars span:nth-child(4) {
+  height: 100%;
+  animation-delay: 0.2s;
+  background: var(--charcoal);
+}
+.skyline-bars span:nth-child(5) {
+  height: 68%;
+  animation-delay: 0.25s;
+  background: var(--charcoal);
+}
+.skyline-bars span:nth-child(6) {
+  height: 42%;
+  animation-delay: 0.3s;
+}
+
+@keyframes skyline-rise {
+  from {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
